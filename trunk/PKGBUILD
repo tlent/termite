@@ -13,10 +13,12 @@ makedepends=('git' 'ncurses' 'intltool' 'gperf' 'gtk-doc')
 _vtever=0.54.2.a
 source=("git+https://github.com/thestinger/termite#tag=v$pkgver"
         "git+https://github.com/thestinger/vte-ng#tag=$_vtever"
-        "termite-util::git+https://github.com/thestinger/util")
+        "termite-util::git+https://github.com/thestinger/util"
+        "termite-alt-hyperlinks.patch")
 sha256sums=('SKIP'
             'SKIP'
-            'SKIP')
+            'SKIP'
+            'a29287789801fdde91e465ef8492bcd9cff319c6bf99cc7fc7f4871f6a008051')
 
 prepare() {
   cd vte-ng
@@ -27,6 +29,7 @@ prepare() {
   git submodule init
   git config --local submodule.util.url "$srcdir/termite-util"
   git submodule update
+  patch -p1 -i "${srcdir}/termite-alt-hyperlinks.patch"
 }
 
 build() {

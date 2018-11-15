@@ -1,0 +1,12 @@
+diff -ura termite.old/termite.cc termite.new/termite.cc
+--- termite.old/termite.cc	2018-11-12 11:25:12.313044344 -0500
++++ termite.new/termite.cc	2018-11-12 11:26:04.676376687 -0500
+@@ -1193,7 +1193,7 @@
+         if (!match)
+             return FALSE;
+ 
+-        if (event->button == 1) {
++        if (event->button == 1 && event->state == GDK_MOD1_MASK) {
+             launch_browser(info->browser, match.get());
+         } else if (event->button == 3) {
+             GtkClipboard *clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
